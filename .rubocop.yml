@@ -14,3 +14,13 @@ Style/HashTransformValues:
 
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+Metrics/BlockLength:
+  Exclude:
+    - Guardfile
+
+Style/Documentation:
+  Enabled: false
+
+Rails/FilePath:
+  EnforcedStyle: arguments
