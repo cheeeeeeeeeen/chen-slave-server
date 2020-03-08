@@ -14,6 +14,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development, :test do
   gem 'brakeman'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
   gem 'guard-brakeman'
   gem 'guard-rspec', require: false
   gem 'guard-rubocop'
@@ -28,5 +29,7 @@ group :development do
 end
 
 group :test do
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
