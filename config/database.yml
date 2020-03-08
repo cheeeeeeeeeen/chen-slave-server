@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: chens-slave-server_development
+  database: chens_slave_server_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: chens-slave-server_test
+  database: chens_slave_server_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: chens-slave-server_production
-  username: chens-slave-server
-  password: <%= ENV['CHENS-SLAVE-SERVER_DATABASE_PASSWORD'] %>
+  database: <%= ENV['CHENS_SLAVE_SERVER_DATABASE_NAME'] %>
+  username: <%= ENV['CHENS_SLAVE_SERVER_DATABASE_USERNAME'] %>
+  password: <%= ENV['CHENS_SLAVE_SERVER_DATABASE_PASSWORD'] %>
