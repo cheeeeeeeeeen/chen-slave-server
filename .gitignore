@@ -18,12 +18,7 @@
 /storage/*
 !/storage/.keep
 
-/node_modules
-/yarn-error.log
-
-/public/assets
 .byebug_history
-
 .ruby-version
 
 # Ignore master key for decrypting credentials and more.
