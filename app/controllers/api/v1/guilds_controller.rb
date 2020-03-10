@@ -16,9 +16,8 @@ module Api
         else
           guild.update(guild_params)
         end
-        render json: {
-          guild: guild
-        }
+
+        render json: { guild: guild }
       end
 
       private

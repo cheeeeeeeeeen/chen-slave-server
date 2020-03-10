@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_08_122806) do
+ActiveRecord::Schema.define(version: 2020_03_10_115246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "gachas", force: :cascade do |t|
+    t.string "name"
+    t.string "key_name"
+    t.bigint "guild_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_id"], name: "index_gachas_on_guild_id"
+  end
 
   create_table "guilds", force: :cascade do |t|
     t.string "discord_id"
