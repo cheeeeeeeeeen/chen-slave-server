@@ -6,12 +6,12 @@ Rails.application.routes.draw do
           post :modify_prefix
           get ':guild_id' => 'guilds#show'
         end
+      end
 
-        resources :gachas, only: [:index, :create] do
-          collection do
-            get ':key_name' => 'gachas#show'
-            delete ':key_name' => 'gachas#destroy'
-          end
+      resources :gachas, only: [:index, :create] do
+        collection do
+          get ':key_name' => 'gachas#show'
+          delete ':key_name' => 'gachas#destroy'
         end
       end
     end

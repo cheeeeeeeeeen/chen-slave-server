@@ -34,23 +34,11 @@ module Api
       end
 
       def guild
-        @guild ||= begin
-          data = Guild.find_by(guild_id: params[:guild_id])
-          data || render(json: {
-                           error: '001',
-                           message: 'guild_id does not exist in our database'
-                         })
-        end
+        @guild ||= Guild.find_by(guild_id: params[:guild_id])
       end
 
       def gacha
-        @gacha ||= begin
-          data = guild.gachas.find_by(key_name: params[:key_name])
-          data || render(json: {
-                           error: '003',
-                           message: 'gacha data of this guild_id does not exist'
-                         })
-        end
+        @gacha ||= guild.gachas.find_by(key_name: params[:key_name])
       end
     end
   end
