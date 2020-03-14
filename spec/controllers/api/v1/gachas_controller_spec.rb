@@ -7,7 +7,8 @@ RSpec.describe Api::V1::GachasController, type: :request do
   let(:params) do
     {
       name: 'Gacha Name',
-      key_name: 'new_gacha'
+      key_name: 'new_gacha',
+      guild_id: guild.discord_id
     }
   end
 
@@ -15,7 +16,7 @@ RSpec.describe Api::V1::GachasController, type: :request do
     before do
       create(:gacha)
       create_list(:gacha, 2, guild: guild)
-      get "/api/v1/guilds/#{guild.discord_id}/gachas"
+      get '/api/v1/gachas/', params: { guild_id: guild.discord_id }
     end
 
     it 'fetches all gachas of a guild' do
@@ -24,7 +25,10 @@ RSpec.describe Api::V1::GachasController, type: :request do
   end
 
   describe 'GET #show' do
-    before { get "/api/v1/guilds/#{guild.discord_id}/gachas/#{gacha.key_name}" }
+    before do
+      get "/api/v1/gachas/#{gacha.key_name}",
+          params: { guild_id: guild.discord_id }
+    end
 
     it 'fetches a record' do
       expect(json['gacha']).to be_present
@@ -34,7 +38,7 @@ RSpec.describe Api::V1::GachasController, type: :request do
   describe 'POST #create' do
     context 'when params are valid' do
       before do
-        post "/api/v1/guilds/#{guild.discord_id}/gachas",
+        post '/api/v1/gachas',
              params: params
       end
 
@@ -45,7 +49,7 @@ RSpec.describe Api::V1::GachasController, type: :request do
 
     context 'when params are invalid' do
       before do
-        post "/api/v1/guilds/#{guild.discord_id}/gachas"
+        post '/api/v1/gachas', params: { guild_id: guild.discord_id }
       end
 
       it 'does not save the record' do
@@ -56,7 +60,8 @@ RSpec.describe Api::V1::GachasController, type: :request do
 
   describe 'DELETE #destroy' do
     before do
-      delete "/api/v1/guilds/#{guild.discord_id}/gachas/#{gacha.key_name}"
+      delete "/api/v1/gachas/#{gacha.key_name}",
+             params: { guild_id: guild.discord_id }
     end
 
     it 'deletes the record' do

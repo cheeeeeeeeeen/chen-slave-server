@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_115246) do
+ActiveRecord::Schema.define(version: 2020_03_12_122730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 2020_03_10_115246) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discord_id"], name: "index_guilds_on_discord_id", unique: true
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.decimal "chance", default: "0.0"
+    t.bigint "gacha_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gacha_id"], name: "index_items_on_gacha_id"
   end
 
 end

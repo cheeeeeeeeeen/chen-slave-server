@@ -14,6 +14,12 @@ Rails.application.routes.draw do
           delete ':key_name' => 'gachas#destroy'
         end
       end
+
+      resources :items, only: :create do
+        collection do
+          delete '' => 'items#destroy'
+        end
+      end
     end
   end
 end
