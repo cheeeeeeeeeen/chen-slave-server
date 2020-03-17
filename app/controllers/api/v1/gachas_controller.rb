@@ -26,8 +26,11 @@ module Api
       end
 
       def destroy
-        gacha.destroy
-        render json: { gacha: 'destroyed' }
+        if gacha&.destroy
+          render json: { gacha: 'destroyed' }
+        else
+          render json: { gacha: 'error' }
+        end
       end
 
       private
