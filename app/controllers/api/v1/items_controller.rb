@@ -2,20 +2,20 @@ module Api
   module V1
     class ItemsController < ApplicationController
       def create
-        new_item = gacha.items.new(item_params)
-        if new_item.save
+        new_item = gacha&.items&.new(item_params)
+        if new_item&.save
           render json: { item: new_item }
         else
-          render json: {
-            error: '002',
-            message: 'cannot save the item due to invalid params'
-          }
+          render json: { item: 'error' }
         end
       end
 
       def destroy
-        item.destroy
-        render json: { item: 'destroyed' }
+        if item&.destroy
+          render json: { item: 'destroyed' }
+        else
+          render json: { item: 'error' }
+        end
       end
 
       private
@@ -29,7 +29,7 @@ module Api
       end
 
       def item
-        @item ||= gacha.items.find_by(name: params[:name])
+        @item ||= gacha&.items&.find_by(name: params[:name])
       end
 
       def item_params

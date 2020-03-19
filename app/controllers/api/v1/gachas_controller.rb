@@ -9,7 +9,7 @@ module Api
       def show
         render json: {
           gacha: gacha,
-          items: gacha.items.order('chance desc')
+          items: gacha&.items&.order(chance: :desc, name: :asc)
         }
       end
 
@@ -18,10 +18,7 @@ module Api
         if gacha.save
           render json: { gacha: gacha }
         else
-          render json: {
-            error: '001',
-            message: 'cannot save the gacha due to invalid params'
-          }
+          render json: { gacha: 'error' }
         end
       end
 

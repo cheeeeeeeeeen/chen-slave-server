@@ -4,14 +4,14 @@ Rails.application.routes.draw do
       resources :guilds, only: :index do
         collection do
           post :modify_prefix
-          get ':guild_id' => 'guilds#show'
+          get 'show' => 'guilds#show'
         end
       end
 
       resources :gachas, only: [:index, :create] do
         collection do
-          get ':key_name' => 'gachas#show'
-          delete ':key_name' => 'gachas#destroy'
+          get 'show' => 'gachas#show'
+          delete :destroy
         end
       end
 
