@@ -20,6 +20,12 @@ Rails.application.routes.draw do
           delete '' => 'items#destroy'
         end
       end
+
+      resources :permissions, only: :create do
+        collection do
+          get 'show' => 'permissions#show'
+        end
+      end
     end
   end
 end

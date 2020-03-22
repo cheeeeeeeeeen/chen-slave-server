@@ -1,5 +1,4 @@
 class Gacha < ApplicationRecord
-
   belongs_to :guild
   has_many :items, dependent: :destroy
 

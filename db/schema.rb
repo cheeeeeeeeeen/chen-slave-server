@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_122730) do
+ActiveRecord::Schema.define(version: 2020_03_22_163424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_122730) do
     t.bigint "guild_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["guild_id"], name: "index_gachas_on_guild_id"
+    t.index ["guild_id", "key_name"], name: "index_gachas_on_guild_id_and_key_name", unique: true
   end
 
   create_table "guilds", force: :cascade do |t|
@@ -39,7 +39,17 @@ ActiveRecord::Schema.define(version: 2020_03_12_122730) do
     t.bigint "gacha_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["gacha_id"], name: "index_items_on_gacha_id"
+    t.index ["gacha_id", "name"], name: "index_items_on_gacha_id_and_name", unique: true
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.bigint "guild_id"
+    t.string "feature_name"
+    t.string "action_name"
+    t.text "key_names"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_id", "feature_name", "action_name"], name: "index_permissions_on_guild_id_and_feature_name_and_action_name", unique: true
   end
 
 end
