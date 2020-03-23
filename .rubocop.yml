@@ -18,6 +18,7 @@ Style/SymbolArray:
 Metrics/BlockLength:
   Exclude:
     - Guardfile
+    - config/routes.rb
 
 Style/Documentation:
   Enabled: false

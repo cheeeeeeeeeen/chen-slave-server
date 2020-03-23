@@ -10,7 +10,7 @@ module Api
       end
 
       def show
-        render json: { key_names: permission.key_names }
+        render json: { key_names: permission&.key_names }
       end
 
       private
