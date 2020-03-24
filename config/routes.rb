@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         collection do
           get 'show' => 'gachas#show'
           delete :destroy
+          post 'upload' => 'gachas#upload'
         end
       end
 

@@ -30,6 +30,12 @@ module Api
         end
       end
 
+      def upload
+        service = Gacha::ProcessUploadService.new(guild, file_urls)
+        service.perform
+        render json: { gacha: 'processed' }
+      end
+
       private
 
       def gacha_params
@@ -42,6 +48,10 @@ module Api
 
       def gacha
         @gacha ||= guild.gachas.find_by(key_name: params[:key_name])
+      end
+
+      def file_urls
+        @file_urls ||= params[:file_urls]
       end
     end
   end
