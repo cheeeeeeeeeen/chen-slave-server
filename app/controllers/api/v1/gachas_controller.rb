@@ -42,10 +42,6 @@ module Api
         params.permit(:key_name, :name)
       end
 
-      def guild
-        @guild ||= Guild.find_by(guild_id: params[:guild_id])
-      end
-
       def gacha
         @gacha ||= guild.gachas.find_by(key_name: params[:key_name])
       end

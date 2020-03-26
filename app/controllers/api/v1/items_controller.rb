@@ -20,10 +20,6 @@ module Api
 
       private
 
-      def guild
-        @guild ||= Guild.find_by(discord_id: params[:guild_id])
-      end
-
       def gacha
         @gacha ||= guild.gachas.find_by(key_name: params[:key_name])
       end

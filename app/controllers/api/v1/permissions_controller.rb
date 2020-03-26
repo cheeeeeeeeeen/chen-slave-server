@@ -15,10 +15,6 @@ module Api
 
       private
 
-      def guild
-        @guild ||= Guild.find_by(guild_id: params[:guild_id])
-      end
-
       def permission
         @permission ||= guild.permissions.find_by(
           feature_name: params[:feature_name],
