@@ -23,6 +23,6 @@ class Permission < ApplicationRecord
   end
 
   def blacklisted_features
-    %w[permission help]
+    %w[permission help invite]
   end
 end
