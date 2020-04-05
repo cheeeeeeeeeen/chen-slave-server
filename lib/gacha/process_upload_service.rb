@@ -41,8 +41,8 @@ class Gacha
 
     def create_gacha!
       @gacha = guild.gachas.create!(
-        key_name: file_contents[0].gsub(' ', '_'),
-        name: file_contents[1]
+        key_name: file_contents[0].gsub(' ', '_').strip,
+        name: file_contents[1].strip
       )
     end
 
