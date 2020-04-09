@@ -27,6 +27,10 @@ Rails.application.routes.draw do
           get 'show' => 'permissions#show'
         end
       end
+
+      resources :details, only: [] do
+        get :show, on: :collection
+      end
     end
   end
 end
