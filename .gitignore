@@ -18,7 +18,7 @@
 /coverage/
 /storage/*
 !/storage/.keep
-
+.vscode/
 .byebug_history
 .ruby-version
 
